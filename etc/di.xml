@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Newsletter\Controller\Manage\Index">
+        <plugin name="magentoex_newsletter_addinfo"
+                type="\MagentoEx\Newsletter\Plugin\NewsletterForm"
+                sortOrder="10"/>
+    </type>
+
+    <type name="Magento\Review\Controller\Customer\Index">
+        <plugin name="magentoex_review_addinfo"
+                type="\MagentoEx\Newsletter\Plugin\ReviewPlugin"
+                sortOrder="20"/>
+    </type>
+
+    <preference for="Magento\Customer\Controller\Account\Edit" type="MagentoEx\Newsletter\Block\Account\Edit" />
+
+    <type name="MagentoEx\Newsletter\Block\ContentPageBlock">
+        <plugin name="magentoex_block_page_dataset_info"
+                type="MagentoEx\Newsletter\Plugin\DatasetInfo"
+                sortOrder="30"/>
+    </type>
+
+</config>

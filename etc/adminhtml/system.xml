@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="data_analysis" translate="label" sortOrder="180">
+            <label>Data Analysis</label>
+        </tab>
+
+        <section id="data_visualization" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="10" translate="label">
+            <label>Data Visualization</label>
+            <tab>data_analysis</tab>
+            <resource>Magento_Backend::admin</resource>
+
+            <group id="box_plot" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                <label>Box Plot Settings</label>
+                <comment>This section is used to set up the parameters of Box Plot</comment>
+
+                <field id="predictor_slr" type="select" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label comment">
+                    <label>The predictor variable (X)</label>
+                    <comment>Pick the categorical parameter X from list</comment>
+                    <tooltip>Box plot is build based on the categories of the predictor variables</tooltip>
+                    <source_model>MagentoEx\Newsletter\Model\Config\Source\PredictorSLR</source_model>
+                </field>
+                <field id="target_slr" type="select" translate="label comment" showInWebsite="1" showInStore="1" showInDefault="1" sortOrder="20">
+                    <label>The target variable (Y)</label>
+                    <comment>Pick the parameter Y from list</comment>
+                    <source_model>MagentoEx\Newsletter\Model\Config\Source\TargetSLR</source_model>
+
+                    <attribute type="und">Undefined</attribute>
+                </field>
+            </group>
+
+            <group id="dataset_info_slr" sortOrder="20" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                <label>Dataset Information</label>
+                <comment>This section is used to update information about your dataset</comment>
+
+                <field id="email_ds_slr" type="text" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label comment">
+                    <label>Owner Email</label>
+                    <comment>Enter the email of dataset owner</comment>
+                    <tooltip>This field is required to make users be able to stay connected with owner</tooltip>
+                    <validate>validate-email</validate>
+                </field>
+
+                <field id="up_date_slr" type="text" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="20" translate="label comment">
+                    <label>Date of updating</label>
+                    <tooltip>Required for updating process tracking</tooltip>
+                    <validate>validate-date-au</validate>
+                </field>
+
+                <field id="accessability_category_slr" type="select" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="40" translate="label comment">
+                    <label>Dataset Accessability Categories</label>
+                    <tooltip>Here you can pick the categories of users who'll be able to use your dataset</tooltip>
+                    <source_model>MagentoEx\Newsletter\Model\Config\Source\UserCategory</source_model>
+                    <depends>
+                        <field id="data_visualization/dataset_info_slr/security_ds_slr">1</field>
+                    </depends>
+                </field>
+
+                <field id="security_ds_slr" type="select" translate="label comment" showInWebsite="1" showInStore="1" showInDefault="1" sortOrder="30">
+                    <label>Dataset Security</label>
+                    <tooltip>Enable - only for users with access; Disable - for everyone</tooltip>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="controller_action_predispatch_newsletter_index_index">
+        <observer name="predispatch_action_newsletter_index_index" instance="MagentoEx\Newsletter\Observer\IndexActionPredispatch" />
+    </event>
+    <event name="block_predispatch_data">
+        <observer name="predispatch_block_data" instance="MagentoEx\Newsletter\Observer\BlockPredispatch" />
+    </event>
+</config>

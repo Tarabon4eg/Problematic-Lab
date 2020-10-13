@@ -1,0 +1,26 @@
+<?php
+/** @var \MagentoEx\Newsletter\Block\ContentPageBlock $block */
+?>
+<body>
+<h1><?=$block->getData('header') ?></h1>
+<p><?=$block->getData('content') ?></p>
+<p><?=$block->getData('addInfo') ?></p>
+<p><?=$block->getData('addInfoSubs') ?></p><a href="<?=$block->getData('settingsLink') ?>">newsletter subscription settings page</a>
+<p style="color: green"><?=$block->getData('tableInfo') ?></p>
+<table style="width:100%">
+    <tr>
+        <th>Subscription Status</th>
+        <th>Subscription Activity</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+    </tr>
+    <tr>
+        <td><?= $block->getData('newsletterStatus');?></td>
+        <td><?= $block->getActivity();?></td>
+        <td><?= $block->getStartDate();?></td>
+        <td><?= $block->getEndDate();?></td>
+    </tr>
+</table>
+<h4><?= $block->getNewsletterInfo();?></h4>
+<p>If you have any questions regarding Newsletter Subscription, please contact with our Manager: <?= $block->getEmail();?></p>
+</body>

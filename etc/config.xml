@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <data_visualization>
+            <dataset_info_slr>
+                <email_ds_slr>tolikbebra@mail.ua</email_ds_slr>
+                <up_date_slr>dd/mm/yyyy</up_date_slr>
+                <security_ds_slr>0</security_ds_slr>
+            </dataset_info_slr>
+        </data_visualization>
+    </default>
+</config>

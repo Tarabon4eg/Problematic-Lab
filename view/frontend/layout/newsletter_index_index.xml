@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="sidebar.additional">
+            <referenceBlock name="catalog.compare.sidebar" remove="true" />
+            <referenceBlock name="sidebar.additional" remove="true" />
+        </referenceContainer>
+        <referenceContainer name="columns">
+            <referenceContainer name="div.sidebar.main">
+                <block
+                    class="Magento\Framework\View\Element\Template"
+                    name="left_side_bar_parent"
+                    template="MagentoEx_Newsletter::leftSideBarParent.phtml">
+                    <block
+                        class="Magento\Framework\View\Element\Template"
+                        name="left_side_bar_child"
+                        template="MagentoEx_Newsletter::leftSideBarChild.phtml">
+                    </block>
+                </block>
+            </referenceContainer>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <block class="MagentoEx\Newsletter\Block\ContentPageBlock"
+                   name="page_content"
+                   template="MagentoEx_Newsletter::pageContent.phtml">
+                <arguments>
+                    <argument name="header" xsi:type="string">Newsletter</argument>
+                    <argument name="content" xsi:type="string">Newsletter is a report containing news concerning of the activities of our website</argument>
+                    <argument name="addInfo" xsi:type="string">Newsletter is daily-based subscription.</argument>
+                    <argument name="addInfoSubs" xsi:type="string">You can deny your newsletter subscription using</argument>
+                    <argument name="settingsLink" xsi:type="url" path="newsletter/manage"/>
+                    <argument name="tableInfo" xsi:type="string">This table shows the current status of your newsletter subscription and some additional data</argument>
+                    <argument name="newsletterStatus" xsi:type="string">Active</argument>
+                    <argument name="dateArray" xsi:type="array">
+                        <item name="startDate" xsi:type="string">23/09/2020</item>
+                        <item name="endDate" xsi:type="string">31/12/2020</item>
+                    </argument>
+                    <argument name="objArray" xsi:type="array">
+                        <item name="viewModelContent" xsi:type="object">MagentoEx\Newsletter\ViewModel\ContentPageBlock</item>
+                    </argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>
