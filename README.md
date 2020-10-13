@@ -9,6 +9,6 @@ Exception #0 (Magento\Framework\Exception\LocalizedException): Invalid method Ma
 I tried to create an observer for my event which is dispatched from a block (ObsContentBlock.php).
 
     Files:
-Observer: \Observer\IndexActionPredispatch
-Block: \Block\ObsContentBlock
-Events Subscription: \etc\events.xml
+   Observer: \Observer\IndexActionPredispatch
+   Block: \Block\ObsContentBlock
+   Events Subscription: \etc\events.xml
