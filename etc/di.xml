@@ -26,4 +26,7 @@
                 sortOrder="30"/>
     </type>
 
+    <preference for="MagentoEx\Newsletter\Api\CustomerInfoRepositoryInterface" type="MagentoEx\Newsletter\Model\CustomerInfoRepository"/>
+    <preference for="MagentoEx\Newsletter\Api\Data\CustomerInfoInterface" type="MagentoEx\Newsletter\Model\CustomerInfo"/>
+    <preference for="MagentoEx\Newsletter\Api\Data\CustomerInfoSearchResultInterface" type="MagentoEx\Newsletter\Model\CustomerInfoSearchResult"/>
 </config>

@@ -8,7 +8,7 @@
         <referenceContainer name="columns">
             <referenceContainer name="div.sidebar.main">
                 <block
-                    class="Magento\Framework\View\Element\Template"
+                    class="MagentoEx\Newsletter\Block\ObsContentPage"
                     name="left_side_bar_parent"
                     template="MagentoEx_Newsletter::leftSideBarParent.phtml">
                     <block

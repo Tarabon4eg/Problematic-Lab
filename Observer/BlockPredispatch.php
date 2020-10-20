@@ -17,7 +17,7 @@ use \Magento\Framework\Event\ObserverInterface;
  *
  * @package MagentoEx\Newsletter\Observer
  */
-class BlockPredispatch implements ObserverInterface
+class BlockPredispatch implements ObserverInterface, \Magento\Framework\View\Element\Block\ArgumentInterface
 {
     /**
      * Constructor
@@ -37,9 +37,9 @@ class BlockPredispatch implements ObserverInterface
      */
     public function execute(Observer $observer)
     {
-        $blockText = $observer->getData('subsStatus');
-        $blockText->setText('Inactive');
+        $blockText = $observer->getData('userStatus');
+        $blockText->setKey1('Inactive');
 
-        return $blockText;
+        return $this;
     }
 }

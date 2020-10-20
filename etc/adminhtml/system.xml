@@ -20,7 +20,7 @@
                     <tooltip>Box plot is build based on the categories of the predictor variables</tooltip>
                     <source_model>MagentoEx\Newsletter\Model\Config\Source\PredictorSLR</source_model>
                 </field>
-                <field id="target_slr" type="select" translate="label comment" showInWebsite="1" showInStore="1" showInDefault="1" sortOrder="20">
+                <field id="target_slr" type="multiselect" translate="label comment" showInWebsite="1" showInStore="1" showInDefault="1" sortOrder="20">
                     <label>The target variable (Y)</label>
                     <comment>Pick the parameter Y from list</comment>
                     <source_model>MagentoEx\Newsletter\Model\Config\Source\TargetSLR</source_model>

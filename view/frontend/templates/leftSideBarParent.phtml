@@ -1,8 +1,8 @@
 <?php
-/** @var \MagentoEx\Newsletter\Block\ContentPageBlock $block */
+/** @var \MagentoEx\Newsletter\Block\ObsContentPage $block */
+echo 'Hi there,';
 echo $block->getChildHtml('left_side_bar_child');
-echo 'It\'s a leftbar parent template';
 ?>
 <body>
-    <h1>Section for testing plugins</h1>
+<p>User Status: <?= $block->execute(); ?></p>
 </body>

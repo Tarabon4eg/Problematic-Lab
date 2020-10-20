@@ -25,8 +25,29 @@ class TargetSLR implements \Magento\Framework\Option\ArrayInterface
     {
         if (!self::$_options) {
             self::$_options = [
-                ['label' => __('Income, $'), 'value' => self::INCOME],
-                ['label' => __('Quantity of sold items, n'), 'value' => self::SOLD_QUANTITY]
+                [
+                    'label' => __('Standard Variables'),
+                    'value' => [
+                    [
+                        'label' => __('Income, $'),
+                        'value' => self::INCOME
+                    ],
+                    [
+                        'label' => __('Quantity of sold items, n'),
+                        'value' => self::SOLD_QUANTITY
+                    ]           ]
+                ], [
+                'label' => __('Derivative Variables'),
+                'value' => [
+                    [
+                        'label' => __('Income dynamic, dx/dy'),
+                        'value' => self::INCOME
+                    ],
+                    [
+                        'label' => __('Quantitive dynamic, dx/dy'),
+                        'value' => self::SOLD_QUANTITY
+                    ]       ]
+                ]
             ];
         }
         return self::$_options;

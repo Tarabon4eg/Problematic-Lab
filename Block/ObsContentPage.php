@@ -40,11 +40,14 @@ class ObsContentPage extends Template
 
     /**
      * Execute
+     * @return string
      */
     public function execute()
     {
-        $eventData = new \Magento\Framework\DataObject(array('text' => 'Active'));
-        $this->eventManager->dispatch('block_predispatch_data', ['subsStatus' => $eventData]);
+        $eventData = new \Magento\Framework\DataObject(array('key1' => 'Active'));
+        $this->eventManager->dispatch('block_predispatch_data', ['userStatus' => $eventData]);
+
+        return $eventData->getData('key1');
     }
 }
 

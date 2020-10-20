@@ -11,7 +11,6 @@
 namespace MagentoEx\Newsletter\Block;
 
 use Magento\Framework\View\Element\Template;
-use Magento\Tests\NamingConvention\true\string;
 
 /**
  * Class ContentPageBlock
