@@ -29,4 +29,8 @@
     <preference for="MagentoEx\Newsletter\Api\CustomerInfoRepositoryInterface" type="MagentoEx\Newsletter\Model\CustomerInfoRepository"/>
     <preference for="MagentoEx\Newsletter\Api\Data\CustomerInfoInterface" type="MagentoEx\Newsletter\Model\CustomerInfo"/>
     <preference for="MagentoEx\Newsletter\Api\Data\CustomerInfoSearchResultInterface" type="MagentoEx\Newsletter\Model\CustomerInfoSearchResult"/>
+
+    <preference for="MagentoEx\Newsletter\Api\CustomerEconometryRepositoryInterface" type="MagentoEx\Newsletter\Model\CustomerEconometryRepository"/>
+    <preference for="MagentoEx\Newsletter\Api\Data\CustomerEconometryInterface" type="MagentoEx\Newsletter\Model\CustomerEconometry"/>
+    <preference for="MagentoEx\Newsletter\Api\Data\CustomerEconometrySearchResultInterface" type="MagentoEx\Newsletter\Model\CustomerEconometrySearchResult"/>
 </config>
