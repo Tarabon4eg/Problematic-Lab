@@ -22,7 +22,7 @@ interface CustomerEconometryInterface
     /**#@+
      * Fields
      */
-    const CUST_ID = 'cust_id';
+    const ECON_ID = 'econ_id';
     const INCOME_MONTH = 'income_month';
     const CUST_PROFIT = 'cust_profit';
     const CUST_ITEMS = 'cust_items';
@@ -32,7 +32,7 @@ interface CustomerEconometryInterface
     /**
      * @return int
      */
-    public function getCustId();
+    public function getEconId();
 
     /**
      * @return int
@@ -50,10 +50,10 @@ interface CustomerEconometryInterface
     public function getCustItems() : int;
 
     /**
-     * @param int $custId
+     * @param int $econId
      * @return void
      */
-    public function setCustId(int $custId);
+    public function setEconId(int $econId);
 
     /**
      * @param int $incomeMonth

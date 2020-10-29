@@ -22,7 +22,7 @@ class CustomerEconometry extends AbstractDb
     /**
      * @var string
      */
-    const TABLE_NAME = 'customer_econometry';
+    const TABLE_NAME = 'customer_info_econometry';
 
     /**
      * Initialize main table and table id field
@@ -31,6 +31,6 @@ class CustomerEconometry extends AbstractDb
      */
     protected function _construct() //@codingStandardsIgnoreLine
     {
-        $this->_init(self::TABLE_NAME, CustomerEconometryInterface::CUST_ID);
+        $this->_init(self::TABLE_NAME, CustomerEconometryInterface::ECON_ID);
     }
 }

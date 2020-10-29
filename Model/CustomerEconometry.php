@@ -24,7 +24,7 @@ class CustomerEconometry extends AbstractModel implements CustomerEconometryInte
     /**
      * @var string
      */
-    protected $_idFieldName = CustomerEconometryInterface::CUST_ID; //@codingStandardsIgnoreLine
+    protected $_idFieldName = CustomerEconometryInterface::ECON_ID; //@codingStandardsIgnoreLine
 
     /**
      * @inheritdoc
@@ -37,9 +37,9 @@ class CustomerEconometry extends AbstractModel implements CustomerEconometryInte
     /**
      * @return int
      */
-    public function getCustId(): int
+    public function getEconId(): int
     {
-        return $this->getData(CustomerEconometryInterface::CUST_ID);
+        return $this->getData(CustomerEconometryInterface::ECON_ID);
     }
 
     /**
@@ -68,12 +68,12 @@ class CustomerEconometry extends AbstractModel implements CustomerEconometryInte
 
 
     /**
-     * @param int $custId
+     * @param int $econId
      * @return $this
      */
-    public function setCustId(int $custId): CustomerEconometryInterface
+    public function setEconId(int $econId): CustomerEconometryInterface
     {
-        return $this->setData(CustomerEconometryInterface::CUST_ID, $custId);
+        return $this->setData(CustomerEconometryInterface::ECON_ID, $econId);
     }
 
     /**

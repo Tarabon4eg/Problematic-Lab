@@ -75,22 +75,22 @@ class CustomerEconometryRepository implements CustomerEconometryRepositoryInterf
     }
 
     /**
-     * @param int $custId
+     * @param int $econId
      * @return CustomerEconometryInterface
      * @throws NoSuchEntityException
      */
-    public function get(int $custId)
+    public function get(int $econId)
     {
-        if (!array_key_exists($custId, $this->registry)) {
+        if (!array_key_exists($econId, $this->registry)) {
             $customerEconometry = $this->customerEconometryFactory->create();
-            $this->customerEconometryResource->load($customerEconometry, $custId);
-            if (!$customerEconometry->getId()) {
+            $this->customerEconometryResource->load($customerEconometry, $econId);
+            if (!$customerEconometry->getEconId()) {
                 throw new NoSuchEntityException(__('Requested Customer Econometric Info does not exist'));
             }
-            $this->registry[$custId] = $customerEconometry;
+            $this->registry[$econId] = $customerEconometry;
         }
 
-        return $this->registry[$custId];
+        return $this->registry[$econId];
     }
 
 
@@ -127,11 +127,11 @@ class CustomerEconometryRepository implements CustomerEconometryRepositoryInterf
         try {
             /** @var CustomerEconometry $customerEconometry */
             $this->customerEconometryResource->save($customerEconometry);
-            $this->registry[$customerEconometry->getCustId()] = $this->get($customerEconometry->getCustId());
+            $this->registry[$customerEconometry->getEconId()] = $this->get($customerEconometry->getEconId());
         } catch (\Exception $exception) {
-            throw new StateException(__('Unable to save post #%1', $customerEconometry->getCustId()));
+            throw new StateException(__('Unable to save post #%1', $customerEconometry->getEconId()));
         }
-        return $this->registry[$customerEconometry->getCustId()];
+        return $this->registry[$customerEconometry->getEconId()];
     }
 
     /**
@@ -144,21 +144,21 @@ class CustomerEconometryRepository implements CustomerEconometryRepositoryInterf
         try {
             /** @var CustomerEconometry $customerEconometry */
             $this->customerEconometryResource->delete($customerEconometry);
-            unset($this->registry[$customerEconometry->getCustId()]);
+            unset($this->registry[$customerEconometry->getEconId()]);
         } catch (\Exception $e) {
-            throw new StateException(__('Unable to remove post #%1', $customerEconometry->getCustId()));
+            throw new StateException(__('Unable to remove post #%1', $customerEconometry->getEconId()));
         }
 
         return true;
     }
 
     /**
-     * @param int $custId
+     * @param int $econId
      * @return bool
      */
-    public function deleteById(int $custId)
+    public function deleteById(int $econId)
     {
-        return $this->delete($this->get($custId));
+        return $this->delete($this->get($econId));
     }
 
 }

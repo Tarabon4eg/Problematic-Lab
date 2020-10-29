@@ -22,11 +22,11 @@ use MagentoEx\Newsletter\Api\Data\CustomerEconometryInterface;
 interface CustomerEconometryRepositoryInterface
 {
     /**
-     * @param int $custId
+     * @param int $econId
      * @return \MagentoEx\Newsletter\Api\Data\CustomerEconometryInterface
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
-    public function get(int $custId);
+    public function get(int $econId);
 
     /**
      * @param \MagentoEx\Newsletter\Api\Data\CustomerEconometryInterface $customerEconometry
@@ -44,7 +44,7 @@ interface CustomerEconometryRepositoryInterface
      * @param int $custId
      * @return bool
      */
-    public function deleteById(int $custId);
+    public function deleteById(int $econId);
 
     /**
      * @param \Magento\Framework\Api\SearchCriteriaInterface $searchCriteria
