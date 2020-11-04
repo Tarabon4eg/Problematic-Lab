@@ -4,8 +4,8 @@
     <table name="customer_visited_urls" resource="default" engine="innodb" comment="Urls customer(s) visited">
         <column xsi:type="int" name="id" padding="11" unsigned="true" nullable="false" identity="true"
                 comment="ID"/>
-        <column xsi:type="int" name="customer_id" nullable="true" padding="10" comment="customer id" unsigned="true"/>
-        <column xsi:type="varchar" name="customer_name" nullable="false" length="50" comment="Customer's name"/>
+        <column xsi:type="int" name="cust_id" nullable="false" padding="10" comment="customer id" unsigned="true"/>
+        <column xsi:type="varchar" name="customer_name" nullable="true" length="100" comment="Customer's name"/>
         <column xsi:type="varchar" name="client_ip" nullable="false" length="50" comment="Client IP"/>
         <column xsi:type="varchar" name="visited_url" nullable="false" length="255" comment="Visited url"/>
         <column xsi:type="varchar" name="url_title" nullable="false" length="255" comment="Url's title"/>
@@ -15,9 +15,9 @@
         <constraint xsi:type="primary" referenceId="PRIMARY">
             <column name="id"/>
         </constraint>
-        <constraint xsi:type="foreign" referenceId="CUSTOMER_VISITED_URL_customer_id_CUSTOMER_ENTITY_entity_id"
+        <constraint xsi:type="foreign" referenceId="CUSTOMER_VISITED_URL_cust_id_CUSTOMER_ENTITY_entity_id"
                     table="customer_visited_urls"
-                    column="customer_id"
+                    column="cust_id"
                     referenceTable="customer_entity"
                     referenceColumn="entity_id"
                     onDelete="CASCADE"/>

@@ -4,7 +4,7 @@
  *
  * @category  Smile
  * @package   Smile\Customer
- * @author    Vitaliy Pyatin <vipya@smile.fr>
+ * @author    Taras Trubaichuk <taras.goglechuk@gmail.com>
  * @copyright 2020 Smile
  */
 

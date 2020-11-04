@@ -52,41 +52,33 @@ class LogVisitedUrlByCustomer implements ObserverInterface
      * @param CustomerVisitedUrlsRepositoryInterface $customerVisitedUrlsRepository
      * @param CustomerVisitedUrlsInterfaceFactory $visitedUrlsFactory
      * @param Session $customerSession
-     * @param AccountDashboardInfo $customerAccountInfo
      */
     public function __construct(
         CustomerVisitedUrlsRepositoryInterface $customerVisitedUrlsRepository,
         CustomerVisitedUrlsInterfaceFactory $visitedUrlsFactory,
-        Session $customerSession,
-        AccountDashboardInfo $customerAccountInfo
+        Session $customerSession
     ) {
         $this->customerVisitedUrlsRepository = $customerVisitedUrlsRepository;
         $this->visitedUrlsFactory = $visitedUrlsFactory;
         $this->customerSession = $customerSession;
-        $this->customerAccountInfo = $customerAccountInfo;
     }
 
     /**
      * @inheritDoc
+     *
      */
     public function execute(Observer $observer)
     {
         /** @var Http $request */
         $request = $observer->getRequest();
         $model = $this->visitedUrlsFactory->create();
-        $model->setCustomerId($this->customerSession->getCustomerId())
+        $model->setCustId($this->customerSession->getCustomerId())
             ->setVisitedUrl($request->getRequestUri())
             ->setUrlTitle($request->getRouteName())
             ->setClientIp($request->getClientIp())
-            ->setIsActive(CustomerVisitedUrlsInterface::ENABLED);
-        $this->customerVisitedUrlsRepository->save($model);
+            ->setIsActive(CustomerVisitedUrlsInterface::ENABLED)
+            ->setCustomerName($this->customerSession->getName() ?: 'Unathorized user');
 
-        $userNameModel = $this->visitedUrlsFactory->create();
-        if (!$this->customerAccountInfo->getName()) {
-            $userNameModel = 'Unathorized user';
-        } else {
-            $userNameModel->setCustomerName($this->customerAccountInfo->getName());
-        }
-        $this->customerVisitedUrlsRepository->save($userNameModel);
+        $this->customerVisitedUrlsRepository->save($model);
     }
 }

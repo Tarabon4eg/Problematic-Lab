@@ -3,4 +3,7 @@
     <event name="controller_action_postdispatch">
         <observer name="log_visited_url_by_customer" instance="Smile\Customer\Observer\LogVisitedUrlByCustomer"/>
     </event>
+    <event name="customer_login">
+        <observer name="log_visited_url_by_customer" instance="Smile\Customer\Observer\LogVisitedUrlByCustomer"/>
+    </event>
 </config>

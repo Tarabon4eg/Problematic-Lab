@@ -33,9 +33,9 @@ class CustomerVisitedUrls extends AbstractModel implements CustomerVisitedUrlsIn
      *
      * @return int
      */
-    public function getCustomerId(): ?int
+    public function getCustId(): ?int
     {
-        return $this->getData(CustomerVisitedUrlsInterface::CUSTOMER_ID);
+        return $this->getData(CustomerVisitedUrlsInterface::CUST_ID);
     }
 
     /**
@@ -105,15 +105,15 @@ class CustomerVisitedUrls extends AbstractModel implements CustomerVisitedUrlsIn
      *
      * @return CustomerVisitedUrlsInterface
      */
-    public function setCustomerId(?int $customerId): CustomerVisitedUrlsInterface
+    public function setCustId(?int $custId): CustomerVisitedUrlsInterface
     {
-        return $this->setData(CustomerVisitedUrlsInterface::CUSTOMER_ID, $customerId);
+        return $this->setData(CustomerVisitedUrlsInterface::CUST_ID, $custId);
     }
 
     /**
      * Set customer name
      *
-     * @param string $customerName
+     * @param string|null $customerName
      *
      * @return CustomerVisitedUrlsInterface
      */
@@ -125,7 +125,7 @@ class CustomerVisitedUrls extends AbstractModel implements CustomerVisitedUrlsIn
     /**
      * Set client ip
      *
-     * @param string|null $clientIp
+     * @param string $clientIp
      *
      * @return CustomerVisitedUrlsInterface
      */
