@@ -21,9 +21,7 @@ use Smile\Customer\Model\ResourceModel\CustomerVisitedUrls as ResourceCustomerVi
  */
 class Collection extends AbstractCollection
 {
-    /**
-     * @inheridoc
-     */
+
     protected function _construct()
     {
         $this->_init(CustomerVisitedUrls::class, ResourceCustomerVisitedUrls::class);

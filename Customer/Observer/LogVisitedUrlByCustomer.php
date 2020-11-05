@@ -77,7 +77,7 @@ class LogVisitedUrlByCustomer implements ObserverInterface
             ->setUrlTitle($request->getRouteName())
             ->setClientIp($request->getClientIp())
             ->setIsActive(CustomerVisitedUrlsInterface::ENABLED)
-            ->setCustomerName($this->customerSession->getName() ?: 'Unathorized user');
+            ->setCustomerName($this->customerSession->getName() ?? 'Unathorized user');
 
         $this->customerVisitedUrlsRepository->save($model);
     }

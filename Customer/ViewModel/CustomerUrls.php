@@ -13,6 +13,7 @@ namespace Smile\Customer\ViewModel;
 use Smile\Customer\Api\Data\CustomerVisitedUrlsInterface;
 use Magento\Framework\Api\FilterBuilder;
 use Magento\Framework\Api\SortOrder;
+use Magento\Framework\Api\Search\FilterGroup;
 
 /**
  * Class CustomerUrls
@@ -42,22 +43,30 @@ class CustomerUrls implements \Magento\Framework\View\Element\Block\ArgumentInte
     protected $sortOrder;
 
     /**
+     * @var FilterGroup
+     */
+    protected $filterGroup;
+
+    /**
      * CustomerUrls constructor.
      *
      * @param \Smile\Customer\Api\CustomerVisitedUrlsRepositoryInterface $repository
      * @param \Magento\Framework\Api\SearchCriteriaBuilder $searchCriteriaBuilder
      * @param FilterBuilder $filterBuilder
+     * @param FilterGroup $filterGroup
      * @param SortOrder $sortOrder
      */
     public function __construct(
         \Smile\Customer\Api\CustomerVisitedUrlsRepositoryInterface $repository,
         \Magento\Framework\Api\SearchCriteriaBuilder $searchCriteriaBuilder,
         FilterBuilder $filterBuilder,
+        FilterGroup $filterGroup,
         SortOrder $sortOrder
     ) {
         $this->repository = $repository;
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
         $this->filterBuilder = $filterBuilder;
+        $this->filterGroup = $filterGroup;
         $this->sortOrder = $sortOrder;
     }
 
@@ -90,13 +99,13 @@ class CustomerUrls implements \Magento\Framework\View\Element\Block\ArgumentInte
         $filterDev1 = $this->filterBuilder
             ->setField(CustomerVisitedUrlsInterface::CUST_ID)
             ->setConditionType('eq')
-            ->setValue(1)
+            ->setValue("1")
             ->create();
 
         $filterDev2 = $this->filterBuilder
             ->setField(CustomerVisitedUrlsInterface::CUST_ID)
             ->setConditionType('eq')
-            ->setValue(2)
+            ->setValue("2")
             ->create();
 
         $sortOrder = $this->sortOrder
@@ -121,20 +130,22 @@ class CustomerUrls implements \Magento\Framework\View\Element\Block\ArgumentInte
         $filterDev1 = $this->filterBuilder
             ->setField(CustomerVisitedUrlsInterface::CUST_ID)
             ->setConditionType('eq')
-            ->setValue(1)
+            ->setValue("1")
             ->create();
+        $groupFilterDev1 = $this->filterGroup->setFilters([$filterDev1]);
 
         $filterDev2 = $this->filterBuilder
             ->setField(CustomerVisitedUrlsInterface::CUST_ID)
             ->setConditionType('eq')
-            ->setValue(2)
+            ->setValue("2")
             ->create();
+        $groupFilterDev2 = $this->filterGroup->setFilters([$filterDev2]);
 
         $sortOrder = $this->sortOrder
             ->setField("created_at")
             ->setDirection("ASC");
 
-        $this->searchCriteriaBuilder->setFilterGroups([$filterDev1, $filterDev2])
+        $this->searchCriteriaBuilder->setFilterGroups([$groupFilterDev1, $groupFilterDev2])
             ->setPageSize(5)
             ->setSortOrders([$sortOrder]);
 

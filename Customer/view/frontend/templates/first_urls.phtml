@@ -4,16 +4,18 @@
 <h2>The Magento DevTeam Visited Urls (first ones)</h2>
 <table>
     <tr>
-        <th><?php echo __('Customer Id')?></th>
+        <th><?php echo __('Dev ID "cust_id"')?></th>
         <th><?php echo __('Visited Url')?></th>
+        <th><?php echo __('Visited At')?></th>
         <th><?php echo __('Active Status')?></th>
         <th><?php echo __('IP')?></th>
     </tr>
     <?php foreach ($block->getFirstMagentoDevsUrls()->getItems() as $item): ?>
     <tr>
-        <td><?php echo $item->getCustomerId() ?: 'Not a member of the DevTeam'?></td>
+        <td><?php echo $item->getCustId() ?? 'Not a member of the DevTeam'?></td>
         <td><?php echo $item->getVisitedUrl(); ?></td>
-        <td><?php echo $item->getIsAcive() ? 'Enabled' : 'Disabled'; ?></td>
+        <td><?php echo $item->getCreatedAt(); ?></td>
+        <td><?php echo $item->getIsAcive() ? 'Disabled' : 'Enabled'; ?></td>
         <td><?php echo $item->getClientIp(); ?></td>
     </tr>
     <?php endforeach; ?>
@@ -22,16 +24,18 @@
 <h2>The Magento DevTeam Visited Urls (last ones)</h2>
 <table>
     <tr>
-        <th><?php echo __('Customer Id')?></th>
+        <th><?php echo __('Dev ID "cust_id"')?></th>
         <th><?php echo __('Visited Url')?></th>
+        <th><?php echo __('Visited At')?></th>
         <th><?php echo __('Active Status')?></th>
         <th><?php echo __('Client IP')?></th>
     </tr>
     <?php foreach ($block->getLastMagentoDevUrls()->getItems() as $item): ?>
         <tr>
-            <td><?php echo $item->getCustomerId() ?: 'Not a member of the DevTeam'?></td>
+            <td><?php echo $item->getCustId() ?? 'Not a member of the DevTeam'?></td>
             <td><?php echo $item->getVisitedUrl(); ?></td>
-            <td><?php echo $item->getIsAcive() ? 'Enabled' : 'Disabled'; ?></td>
+            <td><?php echo $item->getCreatedAt(); ?></td>
+            <td><?php echo $item->getIsAcive() ? 'Disabled' : 'Enabled'; ?></td>
             <td><?php echo $item->getClientIp(); ?></td>
         </tr>
     <?php endforeach; ?>
