@@ -1,7 +1,7 @@
 <?php
 /** @var $block \Smile\Customer\Block\VisitedUrls */
 ?>
-<h2>The Magento DevTeam Visited Urls (first ones)</h2>
+<h2><?php echo __('The Magento DevTeam Visited Urls (first ones)')?></h2>
 <table>
     <tr>
         <th><?php echo __('Dev ID "cust_id"')?></th>
@@ -21,7 +21,7 @@
     <?php endforeach; ?>
 </table>
 <p></p>
-<h2>The Magento DevTeam Visited Urls (last ones)</h2>
+<h2><?php echo __('The Magento DevTeam Visited Urls (last ones)')?></h2>
 <table>
     <tr>
         <th><?php echo __('Dev ID "cust_id"')?></th>
@@ -40,4 +40,27 @@
         </tr>
     <?php endforeach; ?>
 </table>
-
+<p></p>
+<h2><?php echo __('The Last Visitors Contact Information')?></h2>
+<table>
+    <tr>
+        <th><?php echo __('Customer id')?></th>
+        <th><?php echo __('Customer Full Name')?></th>
+        <th><?php echo __('Customer Email')?></th>
+        <th><?php echo __('Visited At')?></th>
+        <th><?php echo __('Visited url')?></th>
+        <th><?php echo __('Is active')?></th>
+    </tr>
+    <?php foreach ($block->getLastCustomerVisitedUrlsContactInfo()->getItems() as $item): ?>
+        <tr>
+            <td><?php echo $item->getCustId() ?></td>
+            <td><?php echo __('%1 %2', $item->getFirstname(), $item->getLastname()); ?></td>
+            <td><?php echo __($item->getEmail()); ?></td>
+            <td><?php echo $item->getCreatedAt(); ?></td>
+            <td>
+                <a href="<?php echo rtrim($block->getUrl(trim($item->getVisitedUrl(), '/')), '/'); ?>"><?php echo "smile-m2.lxc".$item->getVisitedUrl(); ?></a>
+            </td>
+            <td><?php echo ($item->isActive() ? 'Enabled' : 'Disabled'); ?></td>
+        </tr>
+    <?php endforeach; ?>
+</table>

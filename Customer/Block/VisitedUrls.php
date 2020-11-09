@@ -63,4 +63,21 @@ class VisitedUrls extends Template
     {
         return $this->customerUrlsViewModel->getFirstMagentoDevsVisitedUrls();
     }
+
+    /**
+     * @return mixed
+     */
+    public function getLastLoginedCustomersUrlsFullNames()
+    {
+        return $this->customerUrlsViewModel->getLastLoginedCustomerVisitedUrlsFullNames();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLastCustomerVisitedUrlsContactInfo()
+    {
+        return $this->customerUrlsViewModel->getLastLoginedCustomerVisitedUrlsContactInfo();
+    }
 }
+

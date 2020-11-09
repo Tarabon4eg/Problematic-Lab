@@ -22,8 +22,35 @@ use Smile\Customer\Model\ResourceModel\CustomerVisitedUrls as ResourceCustomerVi
 class Collection extends AbstractCollection
 {
 
+    /**
+     * @inheridoc
+     */
     protected function _construct()
     {
         $this->_init(CustomerVisitedUrls::class, ResourceCustomerVisitedUrls::class);
+    }
+
+    /**
+     * @inheridoc
+     */
+    public function joinCustomerFullNameById()
+    {
+        $this->join(
+            $this->getTable('customer_entity'),
+            'main_table.cust_id=' . $this->getTable('customer_entity') . '.entity_id',
+            ['firstname', 'lastname']
+        );
+    }
+
+    /**
+     * @inheridoc
+     */
+    public function joinCustomerContactInfoById()
+    {
+        $this->join(
+            $this->getTable('customer_entity'),
+            'main_table.cust_id=' . $this->getTable('customer_entity') . '.entity_id',
+            ['firstname', 'lastname', 'email']
+        );
     }
 }

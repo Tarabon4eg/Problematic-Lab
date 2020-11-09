@@ -7,7 +7,7 @@
         <column xsi:type="int" name="cust_id" nullable="false" padding="10" comment="customer id" unsigned="true"/>
         <column xsi:type="varchar" name="customer_name" nullable="true" length="100" comment="Customer's name"/>
         <column xsi:type="varchar" name="client_ip" nullable="false" length="50" comment="Client IP"/>
-        <column xsi:type="varchar" name="visited_url" nullable="false" comment="Visited url"/>
+        <column xsi:type="text" name="visited_url" nullable="false" comment="Visited url"/>
         <column xsi:type="varchar" name="url_title" nullable="false" length="255" comment="Url's title"/>
         <column xsi:type="datetime" name="created_at" default="CURRENT_TIMESTAMP" comment="From"/>
         <column xsi:type="smallint" name="is_active" padding="6" unsigned="false" nullable="false"

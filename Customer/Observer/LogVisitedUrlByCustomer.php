@@ -11,7 +11,10 @@
 namespace Smile\Customer\Observer;
 
 use Magento\Customer\Model\Session;
-use Magento\Customer\Block\Account\Dashboard\Info as AccountDashboardInfo;
+use Magento\Customer\Api\GroupRepositoryInterface as CustomerGroupRepositoryInterface;
+use Magento\Customer\Api\Data\CustomerInterfaceFactory;
+use Magento\Customer\Api\Data\CustomerInterface;
+use Magento\Customer\Model\Data\Customer as CustomerModel;
 use Magento\Framework\App\Request\Http;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
@@ -42,9 +45,19 @@ class LogVisitedUrlByCustomer implements ObserverInterface
     protected $customerSession;
 
     /**
-     * @var AccountDashboardInfo
+     * @var CustomerGroupRepositoryInterface
      */
-    protected $customerAccountInfo;
+    protected $customerGroupRepository;
+
+    /**
+     * @var CustomerInterfaceFactory
+     */
+    protected $customerInterfaceFactory;
+
+    /**
+     * @var CustomerModel
+     */
+    protected $customerModel;
 
     /**
      * LogVisitedUrlByCustomer constructor.
@@ -52,15 +65,24 @@ class LogVisitedUrlByCustomer implements ObserverInterface
      * @param CustomerVisitedUrlsRepositoryInterface $customerVisitedUrlsRepository
      * @param CustomerVisitedUrlsInterfaceFactory $visitedUrlsFactory
      * @param Session $customerSession
+     * @param CustomerInterfaceFactory $customerInterfaceFactory
+     * @param CustomerGroupRepositoryInterface $customerGroupRepository
+     * @param CustomerModel $customerModel
      */
     public function __construct(
         CustomerVisitedUrlsRepositoryInterface $customerVisitedUrlsRepository,
         CustomerVisitedUrlsInterfaceFactory $visitedUrlsFactory,
-        Session $customerSession
+        Session $customerSession,
+        CustomerGroupRepositoryInterface $customerGroupRepository,
+        CustomerInterfaceFactory $customerInterfaceFactory,
+        CustomerModel $customerModel
     ) {
         $this->customerVisitedUrlsRepository = $customerVisitedUrlsRepository;
         $this->visitedUrlsFactory = $visitedUrlsFactory;
         $this->customerSession = $customerSession;
+        $this->customerGroupRepository = $customerGroupRepository;
+        $this->customerInterfaceFactory = $customerInterfaceFactory;
+        $this->customerModel = $customerModel;
     }
 
     /**
@@ -71,13 +93,13 @@ class LogVisitedUrlByCustomer implements ObserverInterface
     {
         /** @var Http $request */
         $request = $observer->getRequest();
+
         $model = $this->visitedUrlsFactory->create();
         $model->setCustId($this->customerSession->getCustomerId())
             ->setVisitedUrl($request->getRequestUri())
             ->setUrlTitle($request->getRouteName())
             ->setClientIp($request->getClientIp())
-            ->setIsActive(CustomerVisitedUrlsInterface::ENABLED)
-            ->setCustomerName($this->customerSession->getName() ?? 'Unathorized user');
+            ->setIsActive(CustomerVisitedUrlsInterface::ENABLED);
 
         $this->customerVisitedUrlsRepository->save($model);
     }

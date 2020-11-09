@@ -90,6 +90,50 @@ class CustomerUrls implements \Magento\Framework\View\Element\Block\ArgumentInte
     }
 
     /**
+     * filter method
+     * @return mixed
+     */
+    public function getLastLoginedCustomerVisitedUrlsFullNames()
+    {
+        $sortOrder = $this->sortOrder
+            ->setField("created_at")
+            ->setDirection("ASC");
+
+        $this->searchCriteriaBuilder->setPageSize(5)
+            ->setSortOrders([$sortOrder]);
+
+        $searchCriteria = $this->searchCriteriaBuilder->addFilter(
+            CustomerVisitedUrlsInterface::CUST_ID,
+            null,
+            'neq'
+        )->create();
+
+        return $this->repository->getListWithCustomersFullNames($searchCriteria);
+    }
+
+    /**
+     * filter method
+     * @return mixed
+     */
+    public function getLastLoginedCustomerVisitedUrlsContactInfo()
+    {
+        $sortOrder = $this->sortOrder
+            ->setField("created_at")
+            ->setDirection("ASC");
+
+        $this->searchCriteriaBuilder->setPageSize(5)
+            ->setSortOrders([$sortOrder]);
+
+        $searchCriteria = $this->searchCriteriaBuilder->addFilter(
+            CustomerVisitedUrlsInterface::CUST_ID,
+            null,
+            'neq'
+        )->create();
+
+        return $this->repository->getListWithCustomersContactInfo($searchCriteria);
+    }
+
+    /**
      * filterGroup OR method
      * with sorting (descending) and pagination
      * @return mixed
@@ -135,9 +179,9 @@ class CustomerUrls implements \Magento\Framework\View\Element\Block\ArgumentInte
         $groupFilterDev1 = $this->filterGroup->setFilters([$filterDev1]);
 
         $filterDev2 = $this->filterBuilder
-            ->setField(CustomerVisitedUrlsInterface::CUST_ID)
+            ->setField(CustomerVisitedUrlsInterface::IS_ACTIVE)
             ->setConditionType('eq')
-            ->setValue("2")
+            ->setValue(CustomerVisitedUrlsInterface::ENABLED)
             ->create();
         $groupFilterDev2 = $this->filterGroup->setFilters([$filterDev2]);
 

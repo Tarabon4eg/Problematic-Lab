@@ -142,7 +142,6 @@ class CustomerVisitedUrlsRepository implements CustomerVisitedUrlsRepositoryInte
      * Get list
      *
      * @param SearchCriteriaInterface $criteria
-     *
      * @return SearchResultsInterface
      */
     public function getList(SearchCriteriaInterface $criteria)
@@ -151,6 +150,54 @@ class CustomerVisitedUrlsRepository implements CustomerVisitedUrlsRepositoryInte
         $collection = $this->collectionFactory->create();
 
         $this->processor->process($criteria, $collection);
+
+        /** @var \Magento\Framework\Api\SearchResultsInterface $searchResults */
+        $searchResults = $this->searchResultsFactory->create();
+        $searchResults->setSearchCriteria($criteria);
+        $searchResults->setItems($collection->getItems());
+        $searchResults->setTotalCount($collection->getSize());
+
+        return $searchResults;
+    }
+
+    /**
+     * Get ListWithCustomersFullNames
+     *
+     * @param SearchCriteriaInterface $criteria
+     * @return SearchResultsInterface
+     */
+    public function getListWithCustomersFullNames(SearchCriteriaInterface $criteria)
+    {
+        /** @var ResourceModel\CustomerVisitedUrls\Collection $collection */
+        $collection = $this->collectionFactory->create();
+
+        $this->processor->process($criteria, $collection);
+
+        $collection->joinCustomerFullNameById();
+
+        /** @var \Magento\Framework\Api\SearchResultsInterface $searchResults */
+        $searchResults = $this->searchResultsFactory->create();
+        $searchResults->setSearchCriteria($criteria);
+        $searchResults->setItems($collection->getItems());
+        $searchResults->setTotalCount($collection->getSize());
+
+        return $searchResults;
+    }
+
+    /**
+     * Get ListWithCustomersEmails
+     *
+     * @param SearchCriteriaInterface $criteria
+     * @return SearchResultsInterface
+     */
+    public function getListWithCustomersContactInfo(SearchCriteriaInterface $criteria)
+    {
+        /** @var ResourceModel\CustomerVisitedUrls\Collection $collection */
+        $collection = $this->collectionFactory->create();
+
+        $this->processor->process($criteria, $collection);
+
+        $collection->joinCustomerContactInfoById();
 
         /** @var \Magento\Framework\Api\SearchResultsInterface $searchResults */
         $searchResults = $this->searchResultsFactory->create();
