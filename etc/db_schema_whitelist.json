@@ -1,0 +1,18 @@
+{
+    "customer_visited_urls": {
+        "column": {
+            "id": true,
+            "cust_id": true,
+            "customer_name": true,
+            "client_ip": true,
+            "visited_url": true,
+            "url_title": true,
+            "created_at": true,
+            "is_active": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "CUSTOMER_VISITED_URLS_CUST_ID_CUSTOMER_ENTITY_ENTITY_ID": true
+        }
+    }
+}
