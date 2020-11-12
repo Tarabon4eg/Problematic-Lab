@@ -51,6 +51,10 @@ class Collection extends AbstractCollection
             $this->getTable('customer_entity'),
             'main_table.cust_id=' . $this->getTable('customer_entity') . '.entity_id',
             ['firstname', 'lastname', 'email']
+        )->join(
+            $this->getTable('customer_info'),
+            'main_table.cust_id=' . $this->getTable('customer_info') . '.customer_id',
+            ['age']
         );
     }
 }

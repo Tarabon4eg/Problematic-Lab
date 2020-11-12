@@ -55,12 +55,12 @@
         <tr>
             <td><?php echo $item->getCustId() ?></td>
             <td><?php echo __('%1 %2', $item->getFirstname(), $item->getLastname()); ?></td>
-            <td><?php echo __($item->getEmail()); ?></td>
+            <td><?php echo $item->getEmail(); ?></td>
             <td><?php echo $item->getCreatedAt(); ?></td>
             <td>
-                <a href="<?php echo rtrim($block->getUrl(trim($item->getVisitedUrl(), '/')), '/'); ?>"><?php echo "smile-m2.lxc".$item->getVisitedUrl(); ?></a>
+                <a href="<?php echo rtrim($block->getUrl(trim($item->getVisitedUrl(), '/')), '/'); ?>"><?php echo $block->getBaseUrl() .$item->getVisitedUrl(); ?></a>
             </td>
-            <td><?php echo ($item->isActive() ? 'Enabled' : 'Disabled'); ?></td>
+            <td><?php echo $item->isActive() ? 'Enabled' : 'Disabled'; ?></td>
         </tr>
     <?php endforeach; ?>
 </table>

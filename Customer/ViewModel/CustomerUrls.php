@@ -143,13 +143,13 @@ class CustomerUrls implements \Magento\Framework\View\Element\Block\ArgumentInte
         $filterDev1 = $this->filterBuilder
             ->setField(CustomerVisitedUrlsInterface::CUST_ID)
             ->setConditionType('eq')
-            ->setValue("1")
+            ->setValue(1)
             ->create();
 
         $filterDev2 = $this->filterBuilder
             ->setField(CustomerVisitedUrlsInterface::CUST_ID)
             ->setConditionType('eq')
-            ->setValue("2")
+            ->setValue(2)
             ->create();
 
         $sortOrder = $this->sortOrder
