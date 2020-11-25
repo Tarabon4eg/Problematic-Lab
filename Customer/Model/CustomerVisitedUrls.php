@@ -10,12 +10,37 @@
 
 namespace Smile\Customer\Model;
 
+use Magento\Framework\Data\Collection\AbstractDb;
 use Magento\Framework\Model\AbstractModel;
+use Magento\Framework\Model\Context;
+use Magento\Framework\Model\ResourceModel\AbstractResource;
+use Magento\Framework\Registry;
 use Smile\Customer\Api\Data\CustomerVisitedUrlsInterface;
 use Smile\Customer\Model\ResourceModel\CustomerVisitedUrls as ResourceModel;
 
+
 class CustomerVisitedUrls extends AbstractModel implements CustomerVisitedUrlsInterface
 {
+    /**
+     * @param Context $context
+     * @param Registry $registry
+     * @param AbstractResource|null $resource
+     * @param AbstractDb|null $resourceCollection
+     * @param CustomerVisitedUrlsValidator $customerVisitedUrlsValidator
+     * @param array $data
+     */
+    public function __construct(
+        Context $context,
+        Registry $registry,
+        AbstractResource $resource = null,
+        AbstractDb $resourceCollection = null,
+        CustomerVisitedUrlsValidator $customerVisitedUrlsValidator,
+        array $data = []
+    ) {
+        parent::__construct($context, $registry, $resource, $resourceCollection, $data);
+        $this->_validatorBeforeSave = $customerVisitedUrlsValidator;
+    }
+
     /**
      * Init resource model and id field
      *
@@ -31,9 +56,9 @@ class CustomerVisitedUrls extends AbstractModel implements CustomerVisitedUrlsIn
     /**
      * Get customer id
      *
-     * @return int
+     * @return int|string|null
      */
-    public function getCustId(): ?int
+    public function getCustId()
     {
         return $this->getData(CustomerVisitedUrlsInterface::CUST_ID);
     }
@@ -89,7 +114,17 @@ class CustomerVisitedUrls extends AbstractModel implements CustomerVisitedUrlsIn
     }
 
     /**
-     * Is active
+     * Get Page Title
+     *
+     * @return string
+     */
+    public function getPageTitle(): string
+    {
+        return $this->getData(CustomerVisitedUrlsInterface::PAGE_TITLE);
+    }
+
+    /**
+     * Get Is active
      *
      * @return bool
      */
@@ -101,7 +136,7 @@ class CustomerVisitedUrls extends AbstractModel implements CustomerVisitedUrlsIn
     /**
      * Set customer id
      *
-     * @param int|null $customerId
+     * @param int|null $custId
      *
      * @return CustomerVisitedUrlsInterface
      */
@@ -180,5 +215,17 @@ class CustomerVisitedUrls extends AbstractModel implements CustomerVisitedUrlsIn
     public function setIsActive(bool $isActive): CustomerVisitedUrlsInterface
     {
         return $this->setData(CustomerVisitedUrlsInterface::IS_ACTIVE, $isActive);
+    }
+
+    /**
+     * Set Page Title
+     *
+     * @param string $pageTitle
+     *
+     * @return CustomerVisitedUrlsInterface
+     */
+    public function setPageTitle(string $pageTitle): CustomerVisitedUrlsInterface
+    {
+        return $this->setData(CustomerVisitedUrlsInterface::PAGE_TITLE, $pageTitle);
     }
 }

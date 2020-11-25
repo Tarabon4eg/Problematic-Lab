@@ -63,7 +63,7 @@ class VisitedUrlsTitleData implements DataPatchInterface
             [
                 'page_title' => 'Smile Shop'
             ],
-            $this->moduleDataSetup->getConnection()->quoteInto('id = ?', 41)
+            $this->moduleDataSetup->getConnection()->quoteInto('id = ?',41)
         );
 
         $this->moduleDataSetup->endSetup();

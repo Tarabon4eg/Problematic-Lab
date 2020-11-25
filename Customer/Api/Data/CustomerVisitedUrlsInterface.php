@@ -27,6 +27,7 @@ interface CustomerVisitedUrlsInterface
     const VISITED_URL = 'visited_url';
     const URL_TITLE = 'url_title';
     const CREATED_AT = 'created_at';
+    const PAGE_TITLE = 'page_title';
     const IS_ACTIVE = 'is_active';
     /**#@-*/
 
@@ -38,9 +39,9 @@ interface CustomerVisitedUrlsInterface
     /**#@-*/
 
     /**
-     * @return int
+     * @return int|string|null
      */
-    public function getCustId() : ?int;
+    public function getCustId();
 
     /**
      * @return string
@@ -70,6 +71,7 @@ interface CustomerVisitedUrlsInterface
     /**
      * @return string
      */
+    public function getPageTitle() : string;
 
     /**
      * @return bool
@@ -80,7 +82,7 @@ interface CustomerVisitedUrlsInterface
      * @param int $custId
      * @return self
      */
-    public function setCustId(?int $custId) : self;
+    public function setCustId(int $custId) : self;
 
     /**
      * @param string $customerName
@@ -111,6 +113,12 @@ interface CustomerVisitedUrlsInterface
      * @return self
      */
     public function setCreatedAt(string $createdAt) : self;
+
+    /**
+     * @param string $pageTitle
+     * @return self
+     */
+    public function setPageTitle(string $pageTitle) : self;
 
     /**
      * @param string $isActive

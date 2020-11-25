@@ -23,7 +23,7 @@
                 </field>
                 <field id="allowed_sizes" type="multiselect" translate="label comment" showInWebsite="1" showInStore="1" showInDefault="1" sortOrder="10">
                     <label>Allowed sized</label>
-                    <source_model>Smile\Customer\Model\Config\Source\CustomerStuffMultiselect</source_model>
+                    <source_model>Smile\AdminSample\Model\Config\Source\CustomerStuffMultiselect</source_model>
                 </field>
             </group>
         </section>
